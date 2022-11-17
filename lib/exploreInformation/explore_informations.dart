@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:properties_app/widgets/explore_widgets.dart';
+import 'package:properties_app/widgets/text_fields.dart';
 
 class ExploreInformation extends StatefulWidget {
   const ExploreInformation({super.key});
@@ -8,13 +10,69 @@ class ExploreInformation extends StatefulWidget {
 }
 
 class _ExploreInformationState extends State<ExploreInformation> {
+  final TextEditingController _radiusFromController = TextEditingController();
+  final TextEditingController _radiusToController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xff3C286E),
-        leading: const Icon(Icons.arrow_back),
-        title: const Text('Add Information'),
+      backgroundColor: Colors.white,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // app bar of explore information screen
+          CustomAppBar(
+            iconButton: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Color.fromRGBO(255, 255, 255, 0.6),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          // range slider section
+          Container(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Text(
+                      'Radius',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      RangeTextField(
+                        hintText: '0 km',
+                        textEditingController: _radiusFromController,
+                        textInputType: TextInputType.number,
+                      ),
+                      const Expanded(
+                        flex: 1,
+                        child: SizedBox(
+                          height: 20,
+                          child: Center(child: Text('TO')),
+                        ),
+                      ),
+                      RangeTextField(
+                        hintText: 'ANY',
+                        textEditingController: _radiusFromController,
+                        textInputType: TextInputType.number,
+                      ),
+                    ],
+                  )
+                ],
+              ))
+        ],
       ),
     );
   }
