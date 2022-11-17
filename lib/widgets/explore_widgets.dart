@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:properties_app/widgets/navbar_widgets.dart';
 import 'package:properties_app/widgets/text_fields.dart';
 
 class SelectionBox extends StatelessWidget {
@@ -42,34 +41,37 @@ class SelectionBox extends StatelessWidget {
   }
 }
 
-class NavBarContainer extends StatefulWidget {
-  const NavBarContainer({super.key});
+// class NavBarContainer extends StatefulWidget {
+//   const NavBarContainer({super.key});
 
-  @override
-  State<NavBarContainer> createState() => _NavBarContainerState();
-}
+//   @override
+//   State<NavBarContainer> createState() => _NavBarContainerState();
+// }
 
-class _NavBarContainerState extends State<NavBarContainer> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 120,
-      width: double.infinity,
-      color: const Color(0xffF3F2F2),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          NavBarItems(icon: Icons.search, text: 'Explore'),
-          NavBarItems(icon: Icons.favorite_border_sharp, text: 'Whilist'),
-          NavBarItems(icon: Icons.chat_outlined, text: 'Chat'),
-          NavBarItems(icon: Icons.list, text: 'Listings'),
-          NavBarItems(icon: Icons.person_outline, text: 'Account'),
-        ],
-      ),
-    );
-  }
-}
+// class _NavBarContainerState extends State<NavBarContainer> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 120,
+//       width: double.infinity,
+//       color: const Color(0xffF3F2F2),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: const [
+//           NavBarItems(
+//             icon: Icons.search,
+//             text: 'Explore',
+//           ),
+//           NavBarItems(icon: Icons.favorite_border_sharp, text: 'Whilist'),
+//           NavBarItems(icon: Icons.chat_outlined, text: 'Chat'),
+//           NavBarItems(icon: Icons.list, text: 'Listings'),
+//           NavBarItems(icon: Icons.person_outline, text: 'Account'),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 // custom appBar for explore section
 
@@ -87,6 +89,7 @@ class CustomAppBar extends StatefulWidget {
 
 class _CustomAppBarState extends State<CustomAppBar> {
   final TextEditingController _locationController = TextEditingController();
+  int selectedButton = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -147,7 +150,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       textInputType: TextInputType.text),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               AppbarButtons(text: 'Map', selected: false),
@@ -159,6 +162,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   }
 }
 
+// custom buttons that are used in appBar
 class AppbarButtons extends StatefulWidget {
   final String text;
   bool selected;
@@ -204,6 +208,70 @@ class _AppbarButtonsState extends State<AppbarButtons> {
           ),
         ),
       ),
+    );
+  }
+}
+
+// custom button that is used in price range section of explore information portion..
+
+class CurrencyButton extends StatefulWidget {
+  const CurrencyButton({super.key});
+
+  @override
+  State<CurrencyButton> createState() => _CurrencyButtonState();
+}
+
+class _CurrencyButtonState extends State<CurrencyButton> {
+  // Initial Selected Value
+  String dropdownvalue = 'Thailand (THB)';
+
+  // List of items in our dropdown menu
+  var items = [
+    'Thailand (THB)',
+    'United States (USD)',
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton(
+      // Initial Value
+      value: dropdownvalue,
+
+      icon: const Icon(Icons.keyboard_arrow_down),
+      autofocus: false,
+      borderRadius: BorderRadius.circular(10),
+      underline: DropdownButtonHideUnderline(child: Container()),
+
+      // Array list of items
+      items: items.map((String items) {
+        return DropdownMenuItem(
+          value: items,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Text(items),
+          ),
+        );
+      }).toList(),
+      // After selecting the desired option,it will
+      // change button value to selected value
+      onChanged: (String? newValue) {
+        setState(() {
+          dropdownvalue = newValue!;
+        });
+      },
+    );
+  }
+}
+// custom button that is used in property type section...
+
+class PropertyTypeButton extends StatelessWidget {
+  final String text;
+
+  const PropertyTypeButton({super.key, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
     );
   }
 }

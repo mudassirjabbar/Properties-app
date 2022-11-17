@@ -96,15 +96,16 @@ class RangeTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 3,
-      child: SizedBox(
+      child: Container(
         height: 20,
         child: TextField(
           controller: textEditingController,
           decoration: InputDecoration(
             hintText: hintText,
+            contentPadding: const EdgeInsets.only(top: 10, left: 5),
             hintStyle: const TextStyle(
               color: Color.fromRGBO(20, 14, 37, 0.6),
-              fontSize: 10,
+              fontSize: 15,
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),

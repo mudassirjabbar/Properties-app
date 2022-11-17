@@ -1,5 +1,9 @@
+import 'dart:html';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:properties_app/widgets/explore_widgets.dart';
+import 'package:properties_app/widgets/range_slider_widget.dart';
 import 'package:properties_app/widgets/text_fields.dart';
 
 class ExploreInformation extends StatefulWidget {
@@ -34,44 +38,176 @@ class _ExploreInformationState extends State<ExploreInformation> {
           ),
           // range slider section
           Container(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Text(
-                      'Radius',
-                      style: TextStyle(fontSize: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1,
+                  color: Color.fromRGBO(0, 0, 0, 0.2),
+                ),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Text(
+                    'Radius',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    RangeTextField(
+                      hintText: '0 km',
+                      textEditingController: _radiusFromController,
+                      textInputType: TextInputType.number,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      RangeTextField(
-                        hintText: '0 km',
-                        textEditingController: _radiusFromController,
-                        textInputType: TextInputType.number,
+                    const Expanded(
+                      flex: 1,
+                      child: SizedBox(
+                        height: 20,
+                        child: Center(child: Text('TO')),
                       ),
-                      const Expanded(
-                        flex: 1,
-                        child: SizedBox(
-                          height: 20,
-                          child: Center(child: Text('TO')),
-                        ),
+                    ),
+                    RangeTextField(
+                      hintText: 'ANY',
+                      textEditingController: _radiusToController,
+                      textInputType: TextInputType.number,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Container(child: const RangeSliderContainer()),
+              ],
+            ),
+          ),
+
+          // Price range section
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1,
+                  color: Color.fromRGBO(0, 0, 0, 0.2),
+                ),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Price Range',
+                        style: TextStyle(fontSize: 20),
                       ),
-                      RangeTextField(
-                        hintText: 'ANY',
-                        textEditingController: _radiusFromController,
-                        textInputType: TextInputType.number,
+                      CurrencyButton(),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    RangeTextField(
+                      hintText: '0 km',
+                      textEditingController: _radiusFromController,
+                      textInputType: TextInputType.number,
+                    ),
+                    const Expanded(
+                      flex: 1,
+                      child: SizedBox(
+                        height: 20,
+                        child: Center(child: Text('TO')),
+                      ),
+                    ),
+                    RangeTextField(
+                      hintText: 'ANY',
+                      textEditingController: _radiusToController,
+                      textInputType: TextInputType.number,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Container(child: const RangeSliderContainer()),
+              ],
+            ),
+          ),
+
+          // Properties type section
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: 1,
+                  color: Color.fromRGBO(0, 0, 0, 0.2),
+                ),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Property type',
+                        style: TextStyle(fontSize: 20),
                       ),
                     ],
-                  )
-                ],
-              ))
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    RangeTextField(
+                      hintText: '0 km',
+                      textEditingController: _radiusFromController,
+                      textInputType: TextInputType.number,
+                    ),
+                    const Expanded(
+                      flex: 1,
+                      child: SizedBox(
+                        height: 20,
+                        child: Center(child: Text('TO')),
+                      ),
+                    ),
+                    RangeTextField(
+                      hintText: 'ANY',
+                      textEditingController: _radiusToController,
+                      textInputType: TextInputType.number,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Container(child: const RangeSliderContainer()),
+              ],
+            ),
+          ),
         ],
       ),
     );

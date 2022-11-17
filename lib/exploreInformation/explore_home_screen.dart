@@ -180,45 +180,6 @@ class _ExploreHomeScreenState extends State<ExploreHomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: NavBarContainer(),
-      //  SizedBox(
-      //   height: 100,
-      //   child: BottomNavigationBar(
-      //     backgroundColor: Color(0xff00D2AA),
-      //     selectedItemColor: Color(0xff00D2AA),
-      //     unselectedItemColor: Color(0xffB7BCC4),
-      //     iconSize: 40,
-      //     items: const [
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.search),
-      //         label: 'Search',
-      //         backgroundColor: Color(0xffF3F2F2),
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(
-      //           Icons.favorite_border_sharp,
-      //         ),
-      //         label: 'Whilist',
-      //         backgroundColor: Color(0xffF3F2F2),
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.chat_outlined),
-      //         label: '',
-      //         backgroundColor: Color(0xffF3F2F2),
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.list),
-      //         label: '',
-      //         backgroundColor: Color(0xffF3F2F2),
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(Icons.person_outline),
-      //         label: '',
-      //         backgroundColor: Color(0xffF3F2F2),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
