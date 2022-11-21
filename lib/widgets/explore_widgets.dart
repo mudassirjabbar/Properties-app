@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:properties_app/navbar/navbar_items_model.dart';
 import 'package:properties_app/widgets/text_fields.dart';
+
+import 'item_selector.dart';
 
 class SelectionBox extends StatelessWidget {
   final Image image;
@@ -40,38 +42,6 @@ class SelectionBox extends StatelessWidget {
     );
   }
 }
-
-// class NavBarContainer extends StatefulWidget {
-//   const NavBarContainer({super.key});
-
-//   @override
-//   State<NavBarContainer> createState() => _NavBarContainerState();
-// }
-
-// class _NavBarContainerState extends State<NavBarContainer> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 120,
-//       width: double.infinity,
-//       color: const Color(0xffF3F2F2),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: const [
-//           NavBarItems(
-//             icon: Icons.search,
-//             text: 'Explore',
-//           ),
-//           NavBarItems(icon: Icons.favorite_border_sharp, text: 'Whilist'),
-//           NavBarItems(icon: Icons.chat_outlined, text: 'Chat'),
-//           NavBarItems(icon: Icons.list, text: 'Listings'),
-//           NavBarItems(icon: Icons.person_outline, text: 'Account'),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 // custom appBar for explore section
 
@@ -263,15 +233,170 @@ class _CurrencyButtonState extends State<CurrencyButton> {
 }
 // custom button that is used in property type section...
 
-class PropertyTypeButton extends StatelessWidget {
-  final String text;
+class PropertyType extends StatefulWidget {
+  const PropertyType({super.key});
 
-  const PropertyTypeButton({super.key, required this.text});
+  @override
+  State<PropertyType> createState() => _PropertyTypeState();
+}
 
+class _PropertyTypeState extends State<PropertyType> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      height: 50,
+      padding: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color.fromRGBO(0, 0, 0, 0.2)),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Row(children: [
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return PropertyTypeButton(
+                onTap: () {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
+                title: propertyButtons[index].title,
+                isSelected: currentIndex == index,
+              );
+            },
+            itemCount: propertyButtons.length,
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+// property type button style
+
+class PropertyTypeButton extends StatefulWidget {
+  final String title;
+  final bool isSelected;
+  final VoidCallback onTap;
+  const PropertyTypeButton({
+    super.key,
+    required this.title,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  State<PropertyTypeButton> createState() => _PropertyTypeButtonState();
+}
+
+class _PropertyTypeButtonState extends State<PropertyTypeButton> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: widget.onTap,
+      child: Container(
+        width: MediaQuery.of(context).size.width / 3,
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+        decoration: BoxDecoration(
+          color: widget.isSelected ? const Color(0xff00D2AA) : null,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Center(
+          child: Text(
+            widget.title,
+            style: TextStyle(
+              color: widget.isSelected
+                  ? Colors.white
+                  : const Color.fromRGBO(20, 14, 37, 0.6),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// property type sub buttons \\
+// ........................\\
+
+class SubPropertyTypeButtons extends StatefulWidget {
+  const SubPropertyTypeButtons({super.key});
+
+  @override
+  State<SubPropertyTypeButtons> createState() => _SubPropertyTypeButtonsState();
+}
+
+class _SubPropertyTypeButtonsState extends State<SubPropertyTypeButtons> {
+  late PropertyTypeSubButtonData _selectedItem;
+
+  void _onItemSelected(PropertyTypeSubButtonData item) {
+    setState(() {
+      _selectedItem = item;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ItemSelector(
+      items: subPropertyButtons,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      selectorHeight: 20,
+      onItemSelected: _onItemSelected,
+      itemBuilder: (item) => Text(item.title),
+    );
+  }
+}
+
+// dropdown button used in area range section..
+//  ..................................... \\
+
+class AreaRangeDropDownButton extends StatefulWidget {
+  const AreaRangeDropDownButton({super.key});
+
+  @override
+  State<AreaRangeDropDownButton> createState() =>
+      _AreaRangeDropDownButtonState();
+}
+
+class _AreaRangeDropDownButtonState extends State<AreaRangeDropDownButton> {
+  // Initial Selected Value
+  String dropdownvalue = 'Square Meters (Sq.M)';
+
+  // List of items in our dropdown menu
+  var items = [
+    'Square Meters (Sq.M)',
+    'Square Wah (Sq.W)',
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton(
+      // Initial Value
+      value: dropdownvalue,
+
+      icon: const Icon(Icons.keyboard_arrow_down),
+      autofocus: false,
+      borderRadius: BorderRadius.circular(10),
+      underline: DropdownButtonHideUnderline(child: Container()),
+
+      // Array list of items
+      items: items.map((String items) {
+        return DropdownMenuItem(
+          value: items,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Text(items),
+          ),
+        );
+      }).toList(),
+      // After selecting the desired option,it will
+      // change button value to selected value
+      onChanged: (String? newValue) {
+        setState(() {
+          dropdownvalue = newValue!;
+        });
+      },
     );
   }
 }

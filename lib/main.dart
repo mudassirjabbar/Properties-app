@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:properties_app/exploreInformation/explore_home_screen.dart';
+// import 'package:properties_app/exploreInformation/explore_home_screen.dart';
 import 'package:properties_app/exploreInformation/explore_informations.dart';
-import 'package:properties_app/welcome_screens/add_phone_screen.dart';
-import 'package:properties_app/welcome_screens/otp_verification_screen.dart';
-import 'package:properties_app/welcome_screens/yahoo_login_screen.dart';
-import 'package:properties_app/welcome_screens/yoohoo_forget_password_screen.dart';
-import 'package:properties_app/welcome_screens/yoohoo_signUp_screen.dart';
-import 'package:properties_app/welcome_screens/yoohoo_splash_screen.dart';
-import 'package:properties_app/welcome_screens/yoohoo_welcome_screen.dart';
-import 'package:properties_app/widgets/help_addition.dart';
+// import 'package:properties_app/welcome_screens/add_phone_screen.dart';
+// import 'package:properties_app/welcome_screens/otp_verification_screen.dart';
+// import 'package:properties_app/welcome_screens/yahoo_login_screen.dart';
+// import 'package:properties_app/welcome_screens/yoohoo_forget_password_screen.dart';
+// import 'package:properties_app/welcome_screens/yoohoo_signUp_screen.dart';
+// import 'package:properties_app/welcome_screens/yoohoo_splash_screen.dart';
+// import 'package:properties_app/welcome_screens/yoohoo_welcome_screen.dart';
+// import 'package:properties_app/widgets/help_addition.dart';
 
-import 'home_screen.dart';
+// import 'home_screen.dart';
 
 // import 'package:properties_app/welcome_screens/yahoo_login_screen.dart';
 // import 'package:properties_app/welcome_screens/yoohoo_splash_screen.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const ExploreInformation(),
     );
   }
 }
