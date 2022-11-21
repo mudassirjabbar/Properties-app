@@ -4,8 +4,8 @@ class NavBarItem extends StatefulWidget {
   final String title;
   final IconData icon;
   final VoidCallback onTap;
-  bool isSelected;
-  NavBarItem(
+  final bool isSelected;
+  const NavBarItem(
       {super.key,
       required this.title,
       required this.icon,
@@ -27,12 +27,12 @@ class _NavBarItemState extends State<NavBarItem> {
         margin: const EdgeInsets.symmetric(horizontal: 0),
         decoration: BoxDecoration(
           border: Border(
-              top: (BorderSide(
-            width: 5,
-            color: widget.isSelected
-                ? const Color(0xff00D2AA)
-                : Colors.transparent,
-          ))),
+            top: (BorderSide(
+                width: 5,
+                color: widget.isSelected
+                    ? const Color(0xff00D2AA)
+                    : Colors.transparent)),
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
