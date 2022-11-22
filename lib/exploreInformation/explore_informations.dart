@@ -264,6 +264,54 @@ class _ExploreInformationState extends State<ExploreInformation> {
                 ],
               ),
             ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1,
+                    color: Color.fromRGBO(0, 0, 0, 0.2),
+                  ),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: const Text(
+                      'Beds',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const BedType(),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: const Text(
+                      'Baths',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: const BathType(),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const AppartmentType(),
+                ],
+              ),
+            ),
           ],
         ),
       ),

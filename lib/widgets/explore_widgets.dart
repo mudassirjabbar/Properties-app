@@ -338,13 +338,36 @@ class _SubPropertyTypeButtonsState extends State<SubPropertyTypeButtons> {
   }
 
   @override
+  void initState() {
+    _selectedItem = subPropertyButtons[0];
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ItemSelector(
       items: subPropertyButtons,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       selectorHeight: 20,
+      onPressedColor: const Color.fromRGBO(217, 217, 217, 0.8),
+      unPressedColor: const Color.fromRGBO(217, 217, 217, 0.4),
+      bottomLeftBorderRadius: 10,
+      bottomRightBorderRadius: 10,
+      topLeftBorderRadius: 10,
+      topRightBorderRadius: 10,
+      horizontalPadding: 5,
+      verticalPadding: 5,
+      selectedBorderColor: Colors.transparent,
+      unSelectedBorderColor: Colors.transparent,
       onItemSelected: _onItemSelected,
-      itemBuilder: (item) => Text(item.title),
+      itemBuilder: (item) => Text(
+        item.title,
+        style: TextStyle(
+          color: _selectedItem == item
+              ? const Color.fromRGBO(20, 14, 37, 0.8)
+              : const Color.fromRGBO(20, 14, 37, 0.5),
+        ),
+      ),
     );
   }
 }
@@ -397,6 +420,165 @@ class _AreaRangeDropDownButtonState extends State<AreaRangeDropDownButton> {
           dropdownvalue = newValue!;
         });
       },
+    );
+  }
+}
+
+// Bed and bath numbers section...\\
+// ...............................\\
+
+class BedType extends StatefulWidget {
+  const BedType({super.key});
+
+  @override
+  State<BedType> createState() => _BedTypeState();
+}
+
+class _BedTypeState extends State<BedType> {
+  late BedTypeButtonData _selectedItem;
+
+  void _onItemSelected(BedTypeButtonData item) {
+    setState(() {
+      _selectedItem = item;
+    });
+  }
+
+  @override
+  void initState() {
+    _selectedItem = appartmentBeds[0];
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ItemSelector(
+      items: appartmentBeds,
+      mainAxisAlignment: MainAxisAlignment.start,
+      selectorHeight: 15,
+      onPressedColor: const Color(0xff00D2AA),
+      unPressedColor: Colors.transparent,
+      onItemSelected: _onItemSelected,
+      bottomLeftBorderRadius: 0,
+      bottomRightBorderRadius: 0,
+      topLeftBorderRadius: 5,
+      topRightBorderRadius: 5,
+      horizontalPadding: 15,
+      verticalPadding: 5,
+      selectedBorderColor: Colors.transparent,
+      unSelectedBorderColor: const Color.fromRGBO(41, 42, 46, 0.4),
+      itemBuilder: (item) => Text(
+        item.title,
+        style: TextStyle(
+          color: _selectedItem == item
+              ? const Color.fromRGBO(20, 14, 37, 0.6)
+              : const Color.fromRGBO(20, 14, 37, 0.6),
+        ),
+      ),
+    );
+  }
+}
+
+class BathType extends StatefulWidget {
+  const BathType({super.key});
+
+  @override
+  State<BathType> createState() => _BathTypeState();
+}
+
+class _BathTypeState extends State<BathType> {
+  late BathTypeButtonData _selectedItem;
+
+  void _onItemSelected(BathTypeButtonData item) {
+    setState(() {
+      _selectedItem = item;
+    });
+  }
+
+  @override
+  void initState() {
+    _selectedItem = totalBaths[0];
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ItemSelector(
+      items: totalBaths,
+      mainAxisAlignment: MainAxisAlignment.start,
+      selectorHeight: 15,
+      onPressedColor: const Color(0xff00D2AA),
+      unPressedColor: Colors.transparent,
+      onItemSelected: _onItemSelected,
+      bottomLeftBorderRadius: 0,
+      bottomRightBorderRadius: 0,
+      topLeftBorderRadius: 5,
+      topRightBorderRadius: 5,
+      horizontalPadding: 15,
+      verticalPadding: 5,
+      selectedBorderColor: Colors.transparent,
+      unSelectedBorderColor: const Color.fromRGBO(217, 217, 217, 0.4),
+      itemBuilder: (item) => Text(
+        item.title,
+        style: TextStyle(
+          color: _selectedItem == item
+              ? const Color.fromRGBO(20, 14, 37, 0.6)
+              : const Color.fromRGBO(20, 14, 37, 0.6),
+        ),
+      ),
+    );
+  }
+}
+
+class AppartmentType extends StatefulWidget {
+  const AppartmentType({super.key});
+
+  @override
+  State<AppartmentType> createState() => _AppartmentTypeState();
+}
+
+class _AppartmentTypeState extends State<AppartmentType> {
+  late AppartmentTypeButtonData _selectedItem;
+
+  void _onItemSelected(AppartmentTypeButtonData item) {
+    setState(() {
+      _selectedItem = item;
+    });
+  }
+
+  @override
+  void initState() {
+    _selectedItem = appartmentType[0];
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 1.5,
+      child: ItemSelector(
+        items: appartmentType,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        selectorHeight: 15,
+        onPressedColor: const Color(0xff00D2AA),
+        unPressedColor: const Color.fromRGBO(217, 217, 217, 0.4),
+        onItemSelected: _onItemSelected,
+        bottomLeftBorderRadius: 5,
+        bottomRightBorderRadius: 5,
+        topLeftBorderRadius: 5,
+        topRightBorderRadius: 5,
+        horizontalPadding: 15,
+        verticalPadding: 5,
+        selectedBorderColor: Colors.transparent,
+        unSelectedBorderColor: Colors.transparent,
+        itemBuilder: (item) => Text(
+          item.title,
+          style: TextStyle(
+            color: _selectedItem == item
+                ? const Color.fromRGBO(20, 14, 37, 0.6)
+                : const Color.fromRGBO(20, 14, 37, 0.6),
+          ),
+        ),
+      ),
     );
   }
 }
