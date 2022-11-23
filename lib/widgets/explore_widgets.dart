@@ -322,7 +322,11 @@ class _PropertyTypeButtonState extends State<PropertyTypeButton> {
 // ........................\\
 
 class SubPropertyTypeButtons extends StatefulWidget {
-  const SubPropertyTypeButtons({super.key});
+  // final PropertyTypeSubButtonData initialSelectedItem;
+  const SubPropertyTypeButtons({
+    super.key,
+    // required this.initialSelectedItem,
+  });
 
   @override
   State<SubPropertyTypeButtons> createState() => _SubPropertyTypeButtonsState();
@@ -338,13 +342,23 @@ class _SubPropertyTypeButtonsState extends State<SubPropertyTypeButtons> {
   }
 
   @override
+  initState() {
+    super.initState();
+    _selectedItem = subPropertyButtons[0];
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ItemSelector(
       items: subPropertyButtons,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       selectorHeight: 20,
       onItemSelected: _onItemSelected,
-      itemBuilder: (item) => Text(item.title),
+      itemBuilder: (item) => Text(
+        item.title,
+        style:
+            TextStyle(color: _selectedItem == item ? Colors.red : Colors.green),
+      ),
     );
   }
 }
