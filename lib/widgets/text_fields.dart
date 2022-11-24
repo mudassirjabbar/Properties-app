@@ -38,12 +38,12 @@ class TextFieldInput extends StatelessWidget {
 
 // Location text field that is used in explore information file
 
-class LocationField extends StatelessWidget {
+class SearchField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hintText;
   final TextInputType textInputType;
 
-  const LocationField({
+  const SearchField({
     super.key,
     required this.textEditingController,
     required this.hintText,
@@ -80,6 +80,8 @@ class LocationField extends StatelessWidget {
   }
 }
 
+// textfield that is used to control range slider in explore information file and widget\\
+// ................................................................................\\
 class RangeTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String hintText;

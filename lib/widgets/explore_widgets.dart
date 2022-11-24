@@ -114,7 +114,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 child: Container(
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                  child: LocationField(
+                  child: SearchField(
                       textEditingController: _locationController,
                       hintText: 'Search Your Location',
                       textInputType: TextInputType.text),

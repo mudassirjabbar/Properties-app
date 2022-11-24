@@ -16,6 +16,17 @@ class ExploreInformation extends StatefulWidget {
 class _ExploreInformationState extends State<ExploreInformation> {
   final TextEditingController _radiusFromController = TextEditingController();
   final TextEditingController _radiusToController = TextEditingController();
+  final TextEditingController _searchKeyWordsController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    _radiusFromController.dispose();
+    _radiusToController.dispose();
+    _searchKeyWordsController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +35,8 @@ class _ExploreInformationState extends State<ExploreInformation> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // app bar of explore information screen
+            // app bar of explore information screen\\
+            // ..................................\\
             CustomAppBar(
               iconButton: IconButton(
                 onPressed: () {},
@@ -37,7 +49,8 @@ class _ExploreInformationState extends State<ExploreInformation> {
             const SizedBox(
               height: 10,
             ),
-            // range slider section
+            // range slider section\\
+            // ..................................\\
             Container(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
               decoration: const BoxDecoration(
@@ -91,7 +104,8 @@ class _ExploreInformationState extends State<ExploreInformation> {
               ),
             ),
 
-            // Price range section
+            // Price range section\\
+            // ..................................\\
             Container(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
               decoration: const BoxDecoration(
@@ -151,7 +165,8 @@ class _ExploreInformationState extends State<ExploreInformation> {
               ),
             ),
 
-            // Properties type section
+            // Properties type section\\
+            // ..................................\\
             Container(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
               decoration: const BoxDecoration(
@@ -188,7 +203,8 @@ class _ExploreInformationState extends State<ExploreInformation> {
                 ],
               ),
             ),
-            // Area range selection section
+            // Area range selection section\\
+            // ..................................\\
             Container(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
               decoration: const BoxDecoration(
@@ -264,6 +280,9 @@ class _ExploreInformationState extends State<ExploreInformation> {
                 ],
               ),
             ),
+
+            // keywords and search agency section\\
+            // ..................................\\
             Container(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
               decoration: const BoxDecoration(
@@ -311,6 +330,41 @@ class _ExploreInformationState extends State<ExploreInformation> {
                   const AppartmentType(),
                 ],
               ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1,
+                    color: Color.fromRGBO(0, 0, 0, 0.2),
+                  ),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: const Text(
+                      'Key Words',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SearchField(
+                    textEditingController: _searchKeyWordsController,
+                    hintText: 'Enter Key Words',
+                    textInputType: TextInputType.text,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            const SizedBox(
+              height: 5,
             ),
           ],
         ),
